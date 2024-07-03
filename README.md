@@ -45,7 +45,7 @@ vla = AutoModelForVision2Seq.from_pretrained(
     torch_dtype=torch.bfloat16, 
     low_cpu_mem_usage=True, 
     trust_remote_code=True
-    device_map="cuda:0" # must add this to avoid flash attention 2.0 and GPU initialization error
+    device_map="cuda:0" # Update: must add this to avoid flash attention 2.0 and GPU initialization error
 ).to("cuda:0")
 
 # Grab image input & format prompt
