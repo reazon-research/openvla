@@ -45,6 +45,7 @@ vla = AutoModelForVision2Seq.from_pretrained(
     torch_dtype=torch.bfloat16, 
     low_cpu_mem_usage=True, 
     trust_remote_code=True
+    device_map="cuda:0" # Update: must add this to avoid flash attention 2.0 and GPU initialization error
 ).to("cuda:0")
 
 # Grab image input & format prompt
@@ -185,6 +186,7 @@ AttributeError: 'DLataset' object has no attribute 'traj_map'. Did you mean: 'fl
 High-level overview of repository/project file-tree:
 
 + `prismatic` - Package source; provides core utilities for model loading, training, data preprocessing, etc.
++ `scripts/` - Various scripts for data preprocessing, dataset management, and model interaction.
 + `vla-scripts/` - Core scripts for training, fine-tuning, and deploying VLAs.
 + `LICENSE` - All code is made available under the MIT License; happy hacking!
 + `Makefile` - Top-level Makefile (by default, supports linting - checking & auto-fix); extend as needed.
